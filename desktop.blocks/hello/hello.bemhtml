@@ -1,0 +1,20 @@
+block('hello')(
+  tag()('ul'),
+  content()(
+    (node,ctx) => {
+      return (ctx.names || [ctx.name]).map( (user) => {
+        return { elem: 'item', content: user };
+      });
+    }
+  ),
+  elem('item')(
+    tag()('li'),
+    content()(
+      (node,ctx) => {
+        return (`Hello, ${applyNext()} !`);
+      }
+    )
+  )
+);
+block('hello').js()(true);
+
